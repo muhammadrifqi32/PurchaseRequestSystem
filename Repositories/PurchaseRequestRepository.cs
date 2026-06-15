@@ -31,6 +31,21 @@ public class PurchaseRequestRepository : IPurchaseRequestRepository
             .FirstOrDefaultAsync(x => x.PurchaseRequestId == id, cancellationToken);
     }
 
+
+    public Task<PurchaseRequest?> GetByIdWithDetailsAsync(Guid id, CancellationToken cancellationToken = default)
+        => GetPurchaseRequestWithDetailsAsync(id, cancellationToken);
+
+    public async Task<PurchaseRequest?> GetByIdWithProcurementRequestAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await Query()
+            .Include(x => x.Status)
+            .Include(x => x.ProcurementRequest).ThenInclude(x => x.Status)
+            .FirstOrDefaultAsync(x => x.PurchaseRequestId == id, cancellationToken);
+    }
+
+    public Task<bool> HasDetailsAsync(Guid purchaseRequestId, CancellationToken cancellationToken = default)
+        => _context.PurchaseRequestDetails.AnyAsync(x => x.PurchaseRequestId == purchaseRequestId, cancellationToken);
+
     public async Task<decimal> GetUsedQuantityByProposalDetailAsync(Guid proposalDetailId, Guid? excludedPurchaseRequestId = null, CancellationToken cancellationToken = default)
     {
         var query = _context.PurchaseRequestDetails

@@ -43,6 +43,10 @@ public static class SeedData
     public static readonly Guid StatusUnpaid            = Guid.Parse("44444444-4444-4444-4444-444444444412");
     public static readonly Guid StatusPartiallyPaid     = Guid.Parse("44444444-4444-4444-4444-444444444413");
     public static readonly Guid StatusPaid              = Guid.Parse("44444444-4444-4444-4444-444444444414");
+    public static readonly Guid StatusPendingGmApproval = Guid.Parse("44444444-4444-4444-4444-444444444421");
+    public static readonly Guid StatusGmApproved        = Guid.Parse("44444444-4444-4444-4444-444444444422");
+    public static readonly Guid StatusPendingChairman   = Guid.Parse("44444444-4444-4444-4444-444444444423");
+    public static readonly Guid StatusChairmanApproved  = Guid.Parse("44444444-4444-4444-4444-444444444424");
 
     public static void Apply(ModelBuilder b)
     {
@@ -80,7 +84,11 @@ public static class SeedData
             new Status { StatusId = StatusFullyReceived,     StatusName = "FULLY_RECEIVED",     CreatedAt = Seeded },
             new Status { StatusId = StatusUnpaid,            StatusName = "UNPAID",             CreatedAt = Seeded },
             new Status { StatusId = StatusPartiallyPaid,     StatusName = "PARTIALLY_PAID",     CreatedAt = Seeded },
-            new Status { StatusId = StatusPaid,              StatusName = "PAID",               CreatedAt = Seeded }
+            new Status { StatusId = StatusPaid,              StatusName = "PAID",               CreatedAt = Seeded },
+            new Status { StatusId = StatusPendingGmApproval, StatusName = "PENDING_GM_APPROVAL", CreatedAt = Seeded },
+            new Status { StatusId = StatusGmApproved,        StatusName = "GM_APPROVED",         CreatedAt = Seeded },
+            new Status { StatusId = StatusPendingChairman,   StatusName = "PENDING_CHAIRMAN_CONFIRMATION", CreatedAt = Seeded },
+            new Status { StatusId = StatusChairmanApproved,  StatusName = "CHAIRMAN_APPROVED",   CreatedAt = Seeded }
         );
     }
 }

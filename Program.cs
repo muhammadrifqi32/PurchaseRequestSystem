@@ -14,12 +14,6 @@ using PurchaseRequestSystem.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------- Database ----------
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-//    ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection is not configured.");
-
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseSqlServer(connectionString));
-
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("PurchaseRequestSystem")));
 
@@ -106,6 +100,7 @@ builder.Services.AddScoped<IRequestTypeService, RequestTypeService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<IStatusLookupService, StatusLookupService>();
 builder.Services.AddScoped<IApprovalStageService, ApprovalStageService>();
+builder.Services.AddScoped<IApprovalStageLookupService, ApprovalStageLookupService>();
 builder.Services.AddScoped<IUomService, UomService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 
@@ -114,7 +109,9 @@ builder.Services.AddScoped<IProposalService, ProposalService>();
 builder.Services.AddScoped<IProcurementRequestRepository, ProcurementRequestRepository>();
 builder.Services.AddScoped<IProcurementRequestService, ProcurementRequestService>();
 builder.Services.AddScoped<IPurchaseRequestRepository, PurchaseRequestRepository>();
+builder.Services.AddScoped<IApprovalRecordRepository, ApprovalRecordRepository>();
 builder.Services.AddScoped<IPurchaseRequestService, PurchaseRequestService>();
+builder.Services.AddScoped<IPurchaseRequestApprovalService, PurchaseRequestApprovalService>();
 
 var app = builder.Build();
 
