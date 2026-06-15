@@ -167,8 +167,8 @@ public class AppDbContext : DbContext
              .WithOne(pr => pr.PurchaseOrder)
              .HasForeignKey<PurchaseOrder>(x => x.PurchaseRequestId);
 
-            e.HasOne(x => x.Vendor).WithMany(v => v.PurchaseOrders).HasForeignKey(x => x.VendorId);
-            e.HasOne(x => x.Company).WithMany(c => c.PurchaseOrders).HasForeignKey(x => x.CompanyId);
+            e.HasOne(x => x.Vendor).WithMany(v => v.PurchaseOrders).HasForeignKey(x => x.VendorId).IsRequired(false);
+            e.HasOne(x => x.Company).WithMany(c => c.PurchaseOrders).HasForeignKey(x => x.CompanyId).IsRequired(false);
             e.HasOne(x => x.Status).WithMany().HasForeignKey(x => x.StatusId);
         });
 

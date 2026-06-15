@@ -9,8 +9,8 @@ public class PurchaseOrder
     public Guid PurchaseOrderId { get; set; }
     public Guid PurchaseRequestId { get; set; }
     public string PurchaseOrderNo { get; set; } = string.Empty;
-    public Guid VendorId { get; set; }
-    public Guid CompanyId { get; set; }
+    public Guid? VendorId { get; set; }
+    public Guid? CompanyId { get; set; }
     public DateTime PoDate { get; set; }
     public Guid StatusId { get; set; }
     public string? Notes { get; set; }
@@ -31,8 +31,8 @@ public class PurchaseOrder
     public Guid? UpdatedBy { get; set; }
 
     public PurchaseRequest PurchaseRequest { get; set; } = null!;
-    public Vendor Vendor { get; set; } = null!;
-    public Company Company { get; set; } = null!;
+    public Vendor? Vendor { get; set; }
+    public Company? Company { get; set; }
     public Status Status { get; set; } = null!;
     public ICollection<PurchaseOrderDetail> Details { get; set; } = new List<PurchaseOrderDetail>();
     public ICollection<GoodsReceipt> GoodsReceipts { get; set; } = new List<GoodsReceipt>();

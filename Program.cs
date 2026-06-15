@@ -112,6 +112,8 @@ builder.Services.AddScoped<IPurchaseRequestRepository, PurchaseRequestRepository
 builder.Services.AddScoped<IApprovalRecordRepository, ApprovalRecordRepository>();
 builder.Services.AddScoped<IPurchaseRequestService, PurchaseRequestService>();
 builder.Services.AddScoped<IPurchaseRequestApprovalService, PurchaseRequestApprovalService>();
+builder.Services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+builder.Services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
 
 var app = builder.Build();
 
